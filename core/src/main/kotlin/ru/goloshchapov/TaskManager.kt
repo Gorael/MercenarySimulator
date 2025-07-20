@@ -6,7 +6,7 @@ import ru.goloshchapov.world.GameWorld
 /**
  * Управляет распределением задач между жителями.
  * @property gameWorld Ссылка на игровой мир
- * @property resourceManager Ссылка на менеджер ресурсов
+ * @property resourceManager Ссылка на менеджера ресурсов
  */
 class TaskManager(
     private val gameWorld: GameWorld,

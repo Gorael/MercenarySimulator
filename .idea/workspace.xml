@@ -10,73 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c255eee8-8192-44a3-a7d3-b110ab1e3b7f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/md5-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/sha1-checksums.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/expanded/expanded.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/8.13/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/arm64-v8a/libgdx-box2d.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/arm64-v8a/libgdx-freetype.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/arm64-v8a/libgdx.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/armeabi-v7a/libgdx-box2d.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/armeabi-v7a/libgdx-freetype.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/armeabi-v7a/libgdx.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86/libgdx-box2d.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86/libgdx-freetype.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86/libgdx.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86_64/libgdx-box2d.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86_64/libgdx-freetype.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/libs/x86_64/libgdx.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/ResourceManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/TaskManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/Villager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/building/Building.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/generator/Generator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/processor/DesktopInputProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/screen/MainGameScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/terrain/ChunkedTerrainGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/terrain/TerrainType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/terrain/WorldConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/world/GameWorld.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/building/BuildingGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/terrain/ChunkedTerrainGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/assets.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/libgdx128.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/libgdx16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/libgdx32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/libgdx64.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/ru/goloshchapov/lwjgl3/Lwjgl3Launcher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lwjgl3/bin/main/ru/goloshchapov/lwjgl3/StartupHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/generator/BuildingGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/bin/main/ru/goloshchapov/building/BuildingGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/generator/ChunkedTerrainGenerator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/terrain/AdvancedTerrainNoise.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/terrain/RealisticTerrainGenerator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/world/GameWorld.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/world/GameWorld.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexAlign.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexContainer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexDirection.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexItemProps.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexJustify.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexWrap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/TaskManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/TaskManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/screen/MainGameScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/screen/MainGameScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +49,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/core">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -105,11 +62,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="MercenarySimulator" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MercenarySimulator" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="MercenarySimulator" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -141,37 +105,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.MercenarySimulator [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.MercenarySimulator [run].executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.LeetCodeKt.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Lwjgl3Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.TestKt (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.TestKt.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/ProjectRabbit&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\user\\.gradle&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build MercenarySimulator.executor": "Run",
+    "Gradle.MercenarySimulator [build].executor": "Run",
+    "Gradle.MercenarySimulator [run].executor": "Run",
+    "Gradle.MercenarySimulator:core [build].executor": "Run",
+    "Kotlin.LeetCodeKt.executor": "Run",
+    "Kotlin.Lwjgl3Launcher.executor": "Run",
+    "Kotlin.TestKt (1).executor": "Run",
+    "Kotlin.TestKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/ProjectRabbit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\MercenarySimulator\core\src\main\kotlin\ru\goloshchapov\inputprocessor" />
@@ -183,6 +144,9 @@
       <recent name="ru.goloshchapov.world" />
       <recent name="ru.goloshchapov.screen" />
     </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="ru.flexbox" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="ru.goloshchapov.stage" />
       <recent name="ru.goloshchapov.screen" />
@@ -191,7 +155,8 @@
   </component>
   <component name="RunManager" selected="Kotlin.Lwjgl3Launcher">
     <configuration name="android" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="MercenarySimulator.android.main" />
+      <module name="MercenarySimulator.android" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -199,13 +164,16 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="DEBUGGER_TYPE" value="Java" />
       <Java>
@@ -221,6 +189,7 @@
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
@@ -250,6 +219,28 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="MercenarySimulator:core [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="Lwjgl3Launcher" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.goloshchapov.lwjgl3.Lwjgl3Launcher" />
       <module name="MercenarySimulator.lwjgl3.main" />
@@ -260,9 +251,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.Lwjgl3Launcher" />
+        <item itemvalue="Gradle.MercenarySimulator:core [build]" />
         <item itemvalue="Gradle.MercenarySimulator [build]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -282,11 +282,21 @@
       <workItem from="1747241035423" duration="1506000" />
       <workItem from="1747329203373" duration="624000" />
       <workItem from="1750081257287" duration="4186000" />
+      <workItem from="1751654290857" duration="9908000" />
+      <workItem from="1751790887969" duration="1034000" />
+      <workItem from="1751808609682" duration="10129000" />
+      <workItem from="1752430401489" duration="6388000" />
+      <workItem from="1753000669235" duration="8814000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="com.intellij.configurationType" implementationName="AndroidRunConfigurationType" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
