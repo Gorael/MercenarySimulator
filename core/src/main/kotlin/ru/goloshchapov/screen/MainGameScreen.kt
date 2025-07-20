@@ -54,6 +54,17 @@ class MainGameScreen(
     private var dragPreview: Actor? = null
     private var dragBuildingType: BuildingType? = null
     private var dragResourceType: ResourceType? = null
+    private var isDragging = false
+
+    companion object {
+        private const val SIDEBAR_WIDTH = 200f
+        private const val CELL_WIDTH = 180f
+        private const val CELL_HEIGHT = 60f
+        private const val COLOR_SIZE = 40f
+        private const val CELL_PAD = 10f
+        private val CELL_BORDER_COLOR = Color.LIGHT_GRAY
+        private val SIDEBAR_BG_COLOR = Color(0.2f, 0.2f, 0.3f, 1f)
+    }
 
     override fun show() {
         // === UI Stage ===
@@ -61,15 +72,23 @@ class MainGameScreen(
         val multiplexer = InputMultiplexer()
         multiplexer.addProcessor(stage)
         multiplexer.addProcessor(inputProcessor)
+        // Добавим глобальный InputProcessor для ловли отпускания мыши вне Stage
+        multiplexer.addProcessor(object : com.badlogic.gdx.InputAdapter() {
+            override fun touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
+                println("[GLOBAL] touchUp: isDragging=$isDragging, screenX=$screenX, screenY=$screenY, button=$button")
+                handleDrop(screenX.toFloat(), screenY.toFloat(), button)
+                return false
+            }
+        })
         Gdx.input.inputProcessor = multiplexer
 
         val sidebar = Table().apply {
-            setWidth(200f)
+            setWidth(SIDEBAR_WIDTH)
             setHeight(Gdx.graphics.height.toFloat())
             setPosition(0f, 0f)
             background = object : Drawable {
                 override fun draw(batch: Batch, x: Float, y: Float, width: Float, height: Float) {
-                    batch.color = Color(0.2f, 0.2f, 0.3f, 1f)
+                    batch.color = SIDEBAR_BG_COLOR
                     batch.draw(BuildingPreviewActor.whiteTexture, x, y, width, height)
                     batch.color = Color.WHITE
                 }
@@ -100,177 +119,57 @@ class MainGameScreen(
         val font = BitmapFont()
         // Добавлять каждый stack по вертикали
         for ((displayName, buildingType) in buildings) {
-            val row = Table()
-            row.background = object : Drawable {
-                override fun draw(batch: Batch, x: Float, y: Float, width: Float, height: Float) {
-                    batch.color = Color.LIGHT_GRAY
-                    batch.draw(BuildingPreviewActor.whiteTexture, x, y, width, height)
-                    batch.color = Color.WHITE
-                }
-                override fun getLeftWidth() = 0f
-                override fun setLeftWidth(width: Float) {}
-                override fun getRightWidth() = 0f
-                override fun setRightWidth(width: Float) {}
-                override fun getTopHeight() = 0f
-                override fun setTopHeight(height: Float) {}
-                override fun getBottomHeight() = 0f
-                override fun setBottomHeight(height: Float) {}
-                override fun getMinWidth() = 0f
-                override fun setMinWidth(width: Float) {}
-                override fun getMinHeight() = 0f
-                override fun setMinHeight(height: Float) {}
+            val cell = createUiCell(displayName, buildingType.color) {
+                dragPreview?.remove()
+                dragPreview = createDragPreview(buildingType.color)
+                stage.addActor(dragPreview)
+                dragBuildingType = buildingType
+                dragResourceType = null
+                isDragging = true
             }
-            val colorActor = object : Actor() {
-                override fun draw(batch: Batch, parentAlpha: Float) {
-                    batch.color = buildingType.color.cpy().also { it.a = 1f }
-                    batch.draw(BuildingPreviewActor.whiteTexture, x, y, 40f, 40f)
-                    batch.color = Color.WHITE
-                }
-            }
-            val labelStyle = com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle(BitmapFont(), Color.BLACK)
-            val label = com.badlogic.gdx.scenes.scene2d.ui.Label(displayName, labelStyle)
-            label.setFontScale(0.8f)
-            row.add(colorActor).width(40f).height(40f).pad(10f)
-            row.add(label).left().padLeft(10f)
-            row.addListener(object : InputListener() {
-                override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                    dragPreview?.remove()
-                    dragPreview = object : Actor() {
-                        override fun draw(batch: Batch, parentAlpha: Float) {
-                            batch.color = buildingType.color.cpy().also { it.a = 0.6f }
-                            batch.draw(BuildingPreviewActor.whiteTexture, this.x, this.y, 40f, 40f)
-                            batch.color = Color.WHITE
-                        }
-                    }.apply {
-                        setPosition(Gdx.input.x - 20f, Gdx.graphics.height - Gdx.input.y - 20f)
-                    }
-                    stage.addActor(dragPreview)
-                    dragBuildingType = buildingType
-                    dragResourceType = null
-                    return true
-                }
-                override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-                    dragPreview?.let {
-                        val screenX = Gdx.input.x.toFloat()
-                        val screenY = Gdx.graphics.height - Gdx.input.y.toFloat()
-                        it.setPosition(screenX - 20f, screenY - 20f)
-                    }
-                }
-                override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                    dragPreview?.let { preview ->
-                        val screenX = Gdx.input.x.toFloat()
-                        val screenY = Gdx.input.y.toFloat()
-                        if (screenX > 200f) {
-                            val worldCoords3 = camera.unproject(Vector3(screenX, screenY, 0f))
-                            val worldCoords = Vector2(worldCoords3.x, worldCoords3.y)
-                            dragBuildingType?.let { type ->
-                                addBuildingAt(worldCoords, type)
-                            }
-                        }
-                        preview.remove()
-                        dragPreview = null
-                        dragBuildingType = null
-                    }
-                }
-            })
-            sidebar.add(row).width(180f).height(60f).padBottom(10f).row()
+            sidebar.add(cell).width(CELL_WIDTH).height(CELL_HEIGHT).padBottom(CELL_PAD).row()
         }
 
         // Ресурсы
         val resources = listOf(ResourceType.WOOD, ResourceType.STONE, ResourceType.FOOD, ResourceType.IRON)
         // Добавлять каждый stack по вертикали
         for (resType in resources) {
-            val row = Table()
-            row.background = object : Drawable {
-                override fun draw(batch: Batch, x: Float, y: Float, width: Float, height: Float) {
-                    batch.color = Color.LIGHT_GRAY
-                    batch.draw(BuildingPreviewActor.whiteTexture, x, y, width, height)
-                    batch.color = Color.WHITE
-                }
-                override fun getLeftWidth() = 0f
-                override fun setLeftWidth(width: Float) {}
-                override fun getRightWidth() = 0f
-                override fun setRightWidth(width: Float) {}
-                override fun getTopHeight() = 0f
-                override fun setTopHeight(height: Float) {}
-                override fun getBottomHeight() = 0f
-                override fun setBottomHeight(height: Float) {}
-                override fun getMinWidth() = 0f
-                override fun setMinWidth(width: Float) {}
-                override fun getMinHeight() = 0f
-                override fun setMinHeight(height: Float) {}
+            val color = when(resType) {
+                ResourceType.WOOD -> Color.SKY
+                ResourceType.STONE -> Color.LIGHT_GRAY
+                ResourceType.FOOD -> Color.GREEN
+                ResourceType.IRON -> Color.NAVY
+                else -> Color.WHITE
             }
-            val colorActor = object : Actor() {
-                override fun draw(batch: Batch, parentAlpha: Float) {
-                    batch.color = when(resType) {
-                        ResourceType.WOOD -> Color.SKY
-                        ResourceType.STONE -> Color.LIGHT_GRAY
-                        ResourceType.FOOD -> Color.GREEN
-                        ResourceType.IRON -> Color.NAVY
-                        else -> Color.WHITE
-                    }
-                    batch.draw(BuildingPreviewActor.whiteTexture, x, y, 40f, 40f)
-                    batch.color = Color.WHITE
-                }
+            val cell = createUiCell(resType.name, color) {
+                dragPreview?.remove()
+                dragPreview = createDragPreview(color)
+                stage.addActor(dragPreview)
+                dragBuildingType = null
+                dragResourceType = resType
+                isDragging = true
             }
-            val resLabelStyle = com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle(BitmapFont(), Color.BLACK)
-            val label = com.badlogic.gdx.scenes.scene2d.ui.Label(resType.name, resLabelStyle)
-            label.setFontScale(0.8f)
-            row.add(colorActor).width(40f).height(40f).pad(10f)
-            row.add(label).left().padLeft(10f)
-            row.addListener(object : InputListener() {
-                override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                    dragPreview?.remove()
-                    dragPreview = object : Actor() {
-                        override fun draw(batch: Batch, parentAlpha: Float) {
-                            batch.color = when(resType) {
-                                ResourceType.WOOD -> Color.SKY
-                                ResourceType.STONE -> Color.LIGHT_GRAY
-                                ResourceType.FOOD -> Color.GREEN
-                                ResourceType.IRON -> Color.NAVY
-                                else -> Color.WHITE
-                            }.cpy().also { it.a = 0.6f }
-                            batch.draw(BuildingPreviewActor.whiteTexture, this.x, this.y, 40f, 40f)
-                            batch.color = Color.WHITE
-                        }
-                    }.apply {
-                        setPosition(Gdx.input.x - 20f, Gdx.graphics.height - Gdx.input.y - 20f)
-                    }
-                    stage.addActor(dragPreview)
-                    dragBuildingType = null
-                    dragResourceType = resType
-                    return true
-                }
-                override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-                    dragPreview?.let {
-                        val screenX = Gdx.input.x.toFloat()
-                        val screenY = Gdx.graphics.height - Gdx.input.y.toFloat()
-                        it.setPosition(screenX - 20f, screenY - 20f)
-                    }
-                }
-                override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                    dragPreview?.let { preview ->
-                        val screenX = Gdx.input.x.toFloat()
-                        val screenY = Gdx.input.y.toFloat()
-                        if (screenX > 200f) {
-                            val worldCoords3 = camera.unproject(Vector3(screenX, screenY, 0f))
-                            val worldCoords = Vector2(worldCoords3.x, worldCoords3.y)
-                            dragResourceType?.let { type ->
-                                addResourceAt(worldCoords, type)
-                            }
-                        }
-                        preview.remove()
-                        dragPreview = null
-                        dragResourceType = null
-                    }
-                }
-            })
-            sidebar.add(row).width(180f).height(60f).padBottom(10f).row()
+            sidebar.add(cell).width(CELL_WIDTH).height(CELL_HEIGHT).padBottom(CELL_PAD).row()
         }
         stage.addActor(sidebar)
+        // --- Глобальный drag-and-drop обработчик ---
+        stage.addListener(object : InputListener() {
+            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                val screenX = Gdx.input.x.toFloat()
+                val screenY = Gdx.input.y.toFloat()
+                println("[STAGE] touchUp: isDragging=$isDragging, screenX=$screenX, screenY=$screenY, button=$button")
+                handleDrop(screenX, screenY, button)
+            }
+        })
+        // --- конец drag-and-drop ---
     }
 
     override fun render(delta: Float) {
+        if (dragPreview != null) {
+            val screenX = Gdx.input.x.toFloat()
+            val screenY = Gdx.graphics.height - Gdx.input.y.toFloat()
+            dragPreview!!.setPosition(screenX - COLOR_SIZE / 2, screenY - COLOR_SIZE / 2)
+        }
         update(delta)
         draw()
         stage.act(delta)
@@ -291,8 +190,79 @@ class MainGameScreen(
         shapeRenderer.projectionMatrix = camera.combined
 
         gameWorld.draw(shapeRenderer)
+
+        // --- ОТРИСОВКА СЕТКИ ПРИ DRAG ---
+        if (isDragging) {
+            val gridSize = gameWorld.worldConfig.blockSize
+            // Границы видимой области камеры
+            val camLeft = camera.position.x - camera.viewportWidth * 0.5f * camera.zoom
+            val camRight = camera.position.x + camera.viewportWidth * 0.5f * camera.zoom
+            val camBottom = camera.position.y - camera.viewportHeight * 0.5f * camera.zoom
+            val camTop = camera.position.y + camera.viewportHeight * 0.5f * camera.zoom
+            val minX = (camLeft / gridSize).toInt() * gridSize
+            val maxX = ((camRight / gridSize).toInt() + 1) * gridSize
+            val minY = (camBottom / gridSize).toInt() * gridSize
+            val maxY = ((camTop / gridSize).toInt() + 1) * gridSize
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
+            shapeRenderer.color = Color.DARK_GRAY
+            for (x in minX..maxX step gridSize) {
+                shapeRenderer.line(x.toFloat(), minY.toFloat(), x.toFloat(), maxY.toFloat())
+            }
+            for (y in minY..maxY step gridSize) {
+                shapeRenderer.line(minX.toFloat(), y.toFloat(), maxX.toFloat(), y.toFloat())
+            }
+            shapeRenderer.end()
+
+            // Подсветка клетки под мышью
+            val screenX = Gdx.input.x.toFloat()
+            val screenY = Gdx.input.y.toFloat()
+            if (screenX > SIDEBAR_WIDTH) {
+                val worldCoords3 = camera.unproject(Vector3(screenX, screenY, 0f))
+                val gridX = (worldCoords3.x / gridSize).toInt() * gridSize
+                val gridY = (worldCoords3.y / gridSize).toInt() * gridSize
+                val cellFree = isCellFree(gridX, gridY)
+                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
+                shapeRenderer.color = if (cellFree) Color(0f, 1f, 0f, 0.3f) else Color(1f, 0f, 0f, 0.3f)
+                shapeRenderer.rect(gridX.toFloat(), gridY.toFloat(), gridSize.toFloat(), gridSize.toFloat())
+                shapeRenderer.end()
+            }
+        }
     }
 
+    // Проверка занятости клетки
+    private fun isCellFree(gridX: Int, gridY: Int): Boolean {
+        val blockSize = gameWorld.worldConfig.blockSize
+        // Проверяем террейн
+        val x = gridX / blockSize
+        val y = gridY / blockSize
+        try {
+            val terrainField = gameWorld.javaClass.getDeclaredField("terrain")
+            terrainField.isAccessible = true
+            val terrain = terrainField.get(gameWorld) as Array<Array<*>>
+            val terrainType = terrain.getOrNull(x)?.getOrNull(y)
+            // Разрешаем строить только на FIELD
+            if (terrainType != null && terrainType.toString() != "FIELD") return false
+        } catch (_: Exception) {}
+        // Проверяем здания
+        try {
+            val buildingsField = gameWorld.javaClass.getDeclaredField("buildings")
+            buildingsField.isAccessible = true
+            val arr = buildingsField.get(gameWorld) as Array<Building>
+            for (b in arr) {
+                if (b.x == gridX && b.y == gridY) return false
+            }
+        } catch (_: Exception) {}
+        // Проверяем ресурсы
+        try {
+            val resourcesField = gameWorld.javaClass.getDeclaredField("resources")
+            resourcesField.isAccessible = true
+            val arr = resourcesField.get(gameWorld) as MutableList<ResourceNode>
+            for (r in arr) {
+                if (r.position.x.toInt() == gridX && r.position.y.toInt() == gridY) return false
+            }
+        } catch (_: Exception) {}
+        return true
+    }
 
     override fun dispose() {
         batch.dispose()
@@ -308,14 +278,15 @@ class MainGameScreen(
 
     // Добавить строение в игровой мир
     private fun addBuildingAt(worldCoords: Vector2, type: BuildingType) {
-        // Snap to 32x32 grid
-        val gridX = (worldCoords.x / 32).toInt() * 32
-        val gridY = (worldCoords.y / 32).toInt() * 32
+        val blockSize = gameWorld.worldConfig.blockSize
+        // Snap to grid
+        val gridX = (worldCoords.x / blockSize).toInt() * blockSize
+        val gridY = (worldCoords.y / blockSize).toInt() * blockSize
         val building = Building(
             x = gridX,
             y = gridY,
-            width = 32,
-            height = 32,
+            width = blockSize,
+            height = blockSize,
             type = type
         )
         try {
@@ -331,9 +302,10 @@ class MainGameScreen(
 
     // Добавить ресурсную точку в игровой мир
     private fun addResourceAt(worldCoords: Vector2, type: ResourceType) {
-        // Snap to 32x32 grid
-        val gridX = (worldCoords.x / 32).toInt() * 32
-        val gridY = (worldCoords.y / 32).toInt() * 32
+        val blockSize = gameWorld.worldConfig.blockSize
+        // Snap to grid
+        val gridX = (worldCoords.x / blockSize).toInt() * blockSize
+        val gridY = (worldCoords.y / blockSize).toInt() * blockSize
         val node = ResourceNode(
             type = type,
             amount = 100,
@@ -346,6 +318,104 @@ class MainGameScreen(
             arr.add(node)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun createUiCell(
+        displayName: String,
+        color: Color,
+        onDragInit: () -> Unit
+    ): Table {
+        val row = Table()
+        row.background = object : Drawable {
+            override fun draw(batch: Batch, x: Float, y: Float, width: Float, height: Float) {
+                batch.color = CELL_BORDER_COLOR
+                batch.draw(BuildingPreviewActor.whiteTexture, x, y, width, height)
+                batch.color = Color.WHITE
+            }
+            override fun getLeftWidth() = 0f
+            override fun setLeftWidth(width: Float) {}
+            override fun getRightWidth() = 0f
+            override fun setRightWidth(width: Float) {}
+            override fun getTopHeight() = 0f
+            override fun setTopHeight(height: Float) {}
+            override fun getBottomHeight() = 0f
+            override fun setBottomHeight(height: Float) {}
+            override fun getMinWidth() = 0f
+            override fun setMinWidth(width: Float) {}
+            override fun getMinHeight() = 0f
+            override fun setMinHeight(height: Float) {}
+        }
+        val colorActor = object : Actor() {
+            override fun draw(batch: Batch, parentAlpha: Float) {
+                batch.color = color.cpy().also { it.a = 1f }
+                batch.draw(BuildingPreviewActor.whiteTexture, x, y, COLOR_SIZE, COLOR_SIZE)
+                batch.color = Color.WHITE
+            }
+        }
+        val labelStyle = com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle(BitmapFont(), Color.BLACK)
+        val label = com.badlogic.gdx.scenes.scene2d.ui.Label(displayName, labelStyle)
+        label.setFontScale(0.8f)
+        row.add(colorActor).width(COLOR_SIZE).height(COLOR_SIZE).pad(CELL_PAD)
+        row.add(label).left().padLeft(10f)
+        row.addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                onDragInit()
+                return true
+            }
+        })
+        return row
+    }
+
+    private fun createDragPreview(color: Color): Actor {
+        return object : Actor() {
+            override fun draw(batch: Batch, parentAlpha: Float) {
+                batch.color = color.cpy().also { it.a = 0.6f }
+                batch.draw(BuildingPreviewActor.whiteTexture, this.x, this.y, COLOR_SIZE, COLOR_SIZE)
+                batch.color = Color.WHITE
+            }
+        }.apply {
+            setPosition(Gdx.input.x - COLOR_SIZE / 2, Gdx.graphics.height - Gdx.input.y - COLOR_SIZE / 2)
+            touchable = com.badlogic.gdx.scenes.scene2d.Touchable.disabled
+        }
+    }
+
+    // --- drop-логика ---
+    private fun handleDrop(screenX: Float, screenY: Float, button: Int) {
+        if (isDragging) {
+            // Вставка только по левой кнопке мыши
+            if (button != 0) return
+            dragPreview?.let { preview ->
+                if (screenX > SIDEBAR_WIDTH) {
+                    val worldCoords3 = camera.unproject(Vector3(screenX, screenY, 0f))
+                    val gridX = (worldCoords3.x / gameWorld.worldConfig.blockSize).toInt() * gameWorld.worldConfig.blockSize
+                    val gridY = (worldCoords3.y / gameWorld.worldConfig.blockSize).toInt() * gameWorld.worldConfig.blockSize
+                    if (isCellFree(gridX, gridY)) {
+                        val worldCoords = Vector2(gridX.toFloat(), gridY.toFloat())
+                        dragBuildingType?.let { type ->
+                            addBuildingAt(worldCoords, type)
+                        }
+                        dragResourceType?.let { type ->
+                            addResourceAt(worldCoords, type)
+                        }
+                        preview.remove()
+                        dragPreview = null
+                        dragBuildingType = null
+                        dragResourceType = null
+                        isDragging = false
+                    } else {
+                        println("[DROP] Клетка занята: $gridX, $gridY")
+                        // Не сбрасываем перенос, пользователь может выбрать другую клетку
+                    }
+                } else {
+                    // Если мышь вне игрового поля, можно сбросить перенос
+                    preview.remove()
+                    dragPreview = null
+                    dragBuildingType = null
+                    dragResourceType = null
+                    isDragging = false
+                }
+            }
         }
     }
 }

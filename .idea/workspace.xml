@@ -17,15 +17,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexAlign.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexContainer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexDirection.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexItem.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexItemProps.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexJustify.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/flexbox/FlexWrap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/screen/MainGameScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/ru/goloshchapov/screen/MainGameScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -282,7 +273,7 @@
       <workItem from="1751790887969" duration="1034000" />
       <workItem from="1751808609682" duration="10129000" />
       <workItem from="1752430401489" duration="6388000" />
-      <workItem from="1753000669235" duration="13660000" />
+      <workItem from="1753000669235" duration="15187000" />
     </task>
     <task id="LOCAL-00001" summary="С помощью GPT поправил все">
       <option name="closed" value="true" />
@@ -300,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753032473188</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="С помощью GPT поправил все">
+      <option name="closed" value="true" />
+      <created>1753033623132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753033623132</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
