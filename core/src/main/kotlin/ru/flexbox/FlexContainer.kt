@@ -175,7 +175,6 @@ class FlexContainer : Group() {
         totalMainSize += gap * (children.size - 1)
         val freeSpace = getMainAxisSize(width, height) - totalMainSize
 
-        // Apply justify content to free space
         val mainOffset = if (flexJustify == FlexJustify.CENTER) {
             (getMainAxisSize(width, height) - totalMainSize) / 2f
         } else {
@@ -186,38 +185,30 @@ class FlexContainer : Group() {
         var mainPos = mainOffset
         for (child in children) {
             val props = getProps(child)
-
-            // Calculate child size
             var childMainSize = getMainAxisSize(child, props!!)
             val childCrossSize = getCrossAxisSize(child, props, width, height)
-
-            // Apply flex grow to free space
             if (freeSpace > 0 && props.flexGrow > 0) {
                 childMainSize += freeSpace * (props.flexGrow / totalFlexGrow)
             }
-
-            // Calculate cross axis position
             val crossPos = calculateCrossPosition(child, props, maxCrossSize, height, width)
-
-            // Set child bounds
             if (this.isRow) {
                 child.setBounds(
-                    getX() + paddingLeft + mainPos + props.marginLeft,
-                    getY() + paddingBottom + crossPos + props.marginBottom,
+                    this.x + paddingLeft + mainPos + props.marginLeft,
+                    this.y + paddingBottom + crossPos + props.marginBottom,
                     childMainSize,
                     childCrossSize
                 )
+                mainPos += childMainSize + props.marginMainStart(this.isRow) + props.marginMainEnd(this.isRow) + gap
             } else {
+                // COLUMN: размещаем детей по вертикали сверху вниз
                 child.setBounds(
-                    getX() + paddingLeft + crossPos + props.marginLeft,
-                    getY() + paddingBottom + mainPos + props.marginBottom,
+                    this.x + paddingLeft + crossPos + props.marginLeft,
+                    this.y + height - mainPos - childMainSize - paddingTop - props.marginTop,
                     childCrossSize,
                     childMainSize
                 )
+                mainPos += childMainSize + gap
             }
-
-            // Update position for next child
-            mainPos += childMainSize + props.marginMainStart(this.isRow) + props.marginMainEnd(this.isRow) + gap
         }
     }
 

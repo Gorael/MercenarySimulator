@@ -13,7 +13,10 @@ data class Building(
 
 enum class BuildingType(val color: Color) {
     HOUSE(Color.ORANGE),
-    FARM(Color.YELLOW), ;
+    FARM(Color.YELLOW),
+    BARRACKS(Color.FIREBRICK),
+    TOWER(Color.SKY),
+    STORAGE(Color.BROWN);
 
     companion object {
         fun getRandom(): BuildingType {
